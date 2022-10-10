@@ -39,18 +39,19 @@ def genre =(genre)
   genre.items << self
 end
 
-def source = (source)
+def source=(source)
   @source = source
   source.items << self
 end
 
-def label = (label)
+def label= (label)
   @label = label
   @label.items << self
 end
  
+private
+
 def can_be_archive?
-  Date.strptime(@public_date, '%Y-%m-%d') <
-   DateTime.now.prev_Year(10)
+  Date.strptime(@public_date, '%Y-%m-%d') < DateTime.now.prev_Year(10)
 end
 end 
