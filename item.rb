@@ -1,6 +1,7 @@
 # require_relative 'genre'
 # require_relative 'author'
 # require_relative 'label'
+require 'date'
 
 class Item
   # attr_accessor :genre, :author, :label, :archived
@@ -23,4 +24,17 @@ class Item
   # def create_label
   #   @label = Label.new
   # end
+
+  # def can_be_archived?
+  #   older_than_10years?
+  # end
+
+  # private
+
+  # def older_than_10years?
+  #  @archived = Date.parse(@publish_date).year < Date.today.year - 10
+  # end
 end
+
+# item = Item.new('2000-09-08')
+# puts item.can_be_archived?() # true
