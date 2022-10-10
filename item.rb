@@ -48,4 +48,8 @@ def label = (label)
   @label.items << self
 end
  
-
+def can_be_archive?
+  Date.strptime(@public_date, '%Y-%m-%d') <
+   DateTime.now,prev_Year(10)
+end
+end 
