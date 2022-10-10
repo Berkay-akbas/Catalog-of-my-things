@@ -3,6 +3,7 @@
 # require_relative 'label'
 
 class Item
+  attr_accessor :publish_date, :archived
   # attr_accessor :genre, :author, :label, :archived
   # attr_reader :id, :publish_date
 
