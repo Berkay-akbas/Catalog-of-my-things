@@ -1,6 +1,7 @@
 # require_relative 'genre'
 # require_relative 'author'
 # require_relative 'label'
+require 'date'
 
 class Item
   # attr_accessor :genre, :author, :label, :archived
@@ -10,6 +11,10 @@ class Item
     @id = Random.rand(1..1000)
     @publish_date = publish_date
     @archived = archived
+  end
+
+  def can_be_archived?
+    Date.parse(@publish_date).year < Date.today.year - 10
   end
 
   # def create_genre
@@ -24,3 +29,6 @@ class Item
   #   @label = Label.new
   # end
 end
+
+item = Item.new('2000-09-08')
+puts item.can_be_archived?() # false
