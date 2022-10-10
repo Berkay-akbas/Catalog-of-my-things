@@ -1,7 +1,7 @@
 require_relative 'app'
 
 def main
-  print "Welcome to School Library App!\n"
+  print "Welcome to Catalog of my Things!\n"
   # app = App.new
   loop do
     puts "Please choose an option by entering a number:
