@@ -13,10 +13,6 @@ class Item
     @archived = archived
   end
 
-  def can_be_archived?
-    Date.parse(@publish_date).year < Date.today.year - 10
-  end
-
   # def create_genre
   #   @genre = Genre.new
   # end
@@ -28,7 +24,18 @@ class Item
   # def create_label
   #   @label = Label.new
   # end
+
+  # def can_be_archived?
+  #   older_than_10years?
+  # end
+
+  # private 
+
+  # def older_than_10years?
+  #  @archived = Date.parse(@publish_date).year < Date.today.year - 10
+  # end
 end
 
-item = Item.new('2000-09-08')
-puts item.can_be_archived?() # false
+# item = Item.new('2000-09-08')
+# puts item.can_be_archived?() # true
+
