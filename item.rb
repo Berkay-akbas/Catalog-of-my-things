@@ -4,7 +4,7 @@ require_relative 'label'
 require 'date'
 
 class Item
-  attr_accessor :publish_date, :archived, :label
+  attr_accessor :publish_date, :archived
 
   attr_reader :id
 
@@ -42,14 +42,13 @@ class Item
   private
 
   def can_be_archived?
-    Date.strptime(@publish_date, '%Y-%m-%d')<
+    Date.strptime(@publish_date, '%Y-%m-%d') <
       DateTime.now.prev_year(10)
   end
 end
 
-item = Item.new("2000-09-08")
+item = Item.new('2000-09-08')
 label1 = Label.new('Gift', 'pink')
 label1.add_item(item)
 puts item.label.title
 puts label1.items[0].publish_date
-
