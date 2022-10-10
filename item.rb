@@ -36,10 +36,7 @@ class Item
     author.items << self
   end
 
-  def genre=(genre)
-    @genre = genre
-    genre.items << self
-  end
+  
 
   def source=(source)
     @source = source
