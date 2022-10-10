@@ -23,4 +23,4 @@ class Item
   # def create_label
   #   @label = Label.new
   # end
-end
+  end
