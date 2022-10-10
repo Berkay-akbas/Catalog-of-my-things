@@ -29,7 +29,7 @@ class Item
   #   older_than_10years?
   # end
 
-  # private 
+  # private
 
   # def older_than_10years?
   #  @archived = Date.parse(@publish_date).year < Date.today.year - 10
@@ -38,4 +38,3 @@ end
 
 # item = Item.new('2000-09-08')
 # puts item.can_be_archived?() # true
-
