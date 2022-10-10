@@ -46,6 +46,7 @@ class Item
     source.items << self
   end
 
+
   def label=(label)
     @label = label
     @label.items << self
@@ -57,4 +58,6 @@ class Item
     Date.strptime(@publish_date, '%Y-%m-%d') <
       DateTime.now.prev_year(10)
   end
+
 end
+
