@@ -6,24 +6,12 @@ require 'date'
 class Item
   attr_accessor :publish_date, :archived
 
-  # attr_accessor :genre, :author, :label, :archived
-  # attr_reader :id, :publish_date
+  attr_reader :id
 
   def initialize(publish_date, archived: false)
     @id = Random.rand(1..1000)
     @publish_date = publish_date
     @archived = archived
-
-    # def create_genre
-    #   @genre = Genre.new
-    # end
-
-    # def create_author
-    #   @author = Author.new
-    # end
-
-    # def create_label
-    #   @label = Label.new
   end
 
   def move_to_archive
@@ -58,3 +46,6 @@ class Item
       DateTime.now.prev_year(10)
   end
 end
+
+
+
