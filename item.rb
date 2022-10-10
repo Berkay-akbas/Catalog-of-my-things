@@ -44,5 +44,8 @@ def source = (source)
 end
 
 def label = (label)
+  @label = label
+  @label.items << self
+end
  
 
