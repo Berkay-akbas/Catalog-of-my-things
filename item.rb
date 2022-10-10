@@ -55,6 +55,6 @@ class Item
 
   def can_be_archived?
     Date.strptime(@publish_date, '%Y-%m-%d') <
-      DateTime.now.prev_year(10)
+      Time.now.prev_year(10)
   end
 end
