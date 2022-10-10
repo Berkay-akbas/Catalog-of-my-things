@@ -23,4 +23,26 @@ class Item
   # def create_label
   #   @label = Label.new
   # end
+  def move_to_archive
+    self.archived = true if can be archived?
+    self .archived = false unless can_be_archive? 
   end
+
+def author =(author)
+  @author = author
+  author.Item << self
+end
+
+def genre =(genre)
+  @genre = genre
+  genre.items << self
+end
+
+def source = (source)
+  @source = source
+  source.items << self
+end
+
+def label = (label)
+ 
+
