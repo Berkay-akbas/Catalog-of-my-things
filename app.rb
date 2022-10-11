@@ -1,11 +1,13 @@
-# require_relative 'load_data'
+require_relative 'load_data'
 require_relative 'book'
 require 'json'
 
-class App 
+class App
   def initialize
     @books = []
   end
+
+  include LoadData
 
   def run
     print "Welcome to Catalog of my Things! \n\n"
@@ -23,21 +25,21 @@ class App
       10 - Exit"
       option = gets.chomp.to_i
       break if option == 10
+
       books_options(option)
     end
   end
 
-    def books_options(option)
-      case option
-      when 1
-        puts "List all books: \n\n"
-        list_all_books
-      when 7
-        puts "Add a book: \n\n"
-        create_book
-      end
+  def books_options(option)
+    case option
+    when 1
+      puts "List all books: \n\n"
+      list_all_books
+    when 7
+      puts "Add a book: \n\n"
+      create_book
     end
-
+  end
 
   def create_book
     puts 'Enter the title of the book:'
@@ -48,12 +50,14 @@ class App
     cover_state = gets.chomp
     puts 'Enter the publish date of the book: (e.g. 2022/09/10)'
     publish_date = gets.chomp
-    puts "#{title.capitalize} by #{publisher.capitalize} with a #{cover_state} cover state was successfully created on #{publish_date}. \n\n"
-    # @books = load_all_books if @books.length.zero?
-    @books << Book.new(publisher, cover_state, publish_date)
+    puts "#{title.capitalize!} by #{publisher.capitalize!} with a #{cover_state}
+    cover state was successfully created on #{publish_date}. \n\n"
+    @books = load_all_books if @books.length.zero?
+    @books << Book.new(title, publisher, cover_state, publish_date)
     books_list = []
     @books.each do |book|
-      books_list << { publisher: book.publisher, cover_state: book.cover_state, publish_date: book.publish_date }
+      books_list << { title: book.title, publisher: book.publisher, cover_state: book.cover_state,
+                      publish_date: book.publish_date }
     end
     File.write('books.json', books_list.to_json)
   end
@@ -62,10 +66,11 @@ class App
     puts "Books list:\n\n"
     @books = load_all_books
     if @books.length.zero?
-      puts 'List is empty, please add some books...'
+      puts "List is empty, please add some books...\n\n"
     else
       @books.each_with_index do |book, index|
-        puts "#{index}) Title: #{book.title}, Publisher: #{book.publisher}, Cover State: #{book.cover_state}, Publish Date: #{book.publish_date} "
+        puts "#{index}) Title: #{book.title}, Publisher: #{book.publisher},
+        Cover State: #{book.cover_state}, Publish Date:#{book.publish_date} "
       end
     end
   end
