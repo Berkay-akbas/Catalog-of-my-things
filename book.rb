@@ -1,10 +1,15 @@
 require_relative 'item'
 
 class Book < Item
-  attr_accessor :publisher, :cover_state
+  attr_accessor :publisher, :cover_state, :title
 
   def initialize(publisher, cover_state, publish_date)
     super(publish_date)
+
+  def initialize(title, publisher, cover_state, publish_date)
+    super(publish_date)
+    @title = title
+ development
     @publisher = publisher
     @cover_state = cover_state
   end
@@ -14,5 +19,3 @@ class Book < Item
   end
 end
 
-# book = Book.new('Virag', 'good', '2022-09-08')
-# puts book.can_be_archived?()
