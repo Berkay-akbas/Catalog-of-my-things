@@ -5,12 +5,15 @@ describe Book do
     @book = Book.new('awesome Books', 'micronaut', 'bad', '2022-02-07')
   end
   context "When creating a new instance of the Book class" do
-    it "should have the following properties: title, publisher, cover state, publish date" do
+    it "should have the following properties: title, publisher, cover state, publish date, id" do
       expect(@book.title).to eql('Awesome Books')
       expect(@book.publisher).to eql('Micronaut')
       expect(@book.cover_state).to eql('bad')
       expect(@book.publish_date).to eql('2022-02-07')
       expect(@book.publish_date).to be_kind_of String
+      expect(@book.id).to be_kind_of Integer
+    end
+    it "should be an instance of the Book class" do
       expect(@book).to be_instance_of Book
     end
   end
