@@ -1,4 +1,5 @@
 require 'securerandom'
+
 class Genre
           attr_accessor :id, :name, :items
 
