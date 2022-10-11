@@ -16,4 +16,6 @@ def to_json(*_args)
 end
 
 def add_items(item)
-          
+  @items << item
+end
+end        
