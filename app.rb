@@ -1,5 +1,6 @@
-require_relative './books/book'
 require_relative './books/book_methods'
+require_relative './books/book'
+require_relative './labels/label_methods'
 require 'json'
 
 class App
@@ -9,6 +10,7 @@ class App
   end
 
   include BookMethods
+  include LabelMethods
 
   def run
     print "Welcome to Catalog of my Things! \n\n"
