@@ -59,6 +59,14 @@ class App
   end
 
   def list_all_books
-    
+    puts "Books list:\n\n"
+    @books = load_all_books
+    if @books.length.zero?
+      puts 'List is empty, please add some books...'
+    else
+      @books.each_with_index do |book, index|
+        puts "#{index}) Title: #{book.title}, Publisher: #{book.publisher}, Cover State: #{book.cover_state}, Publish Date: #{book.publish_date} "
+      end
+    end
   end
 end
