@@ -1,29 +1,17 @@
 # require_relative 'genre'
 # require_relative 'author'
-# require_relative 'label'
+require_relative 'label'
 require 'date'
 
 class Item
   attr_accessor :publish_date, :archived
 
-  # attr_accessor :genre, :author, :label, :archived
-  # attr_reader :id, :publish_date
+  attr_reader :id
 
   def initialize(publish_date, archived: false)
     @id = Random.rand(1..1000)
     @publish_date = publish_date
     @archived = archived
-
-    # def create_genre
-    #   @genre = Genre.new
-    # end
-
-    # def create_author
-    #   @author = Author.new
-    # end
-
-    # def create_label
-    #   @label = Label.new
   end
 
   def move_to_archive
@@ -58,3 +46,9 @@ class Item
       DateTime.now.prev_year(10)
   end
 end
+
+item = Item.new('2000-09-08')
+label1 = Label.new('Gift', 'pink')
+label1.add_item(item)
+puts item.label.title
+puts label1.items[0].publish_date
