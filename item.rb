@@ -44,5 +44,3 @@ class Item
     self.archived = false unless can_be_archived?
   end
 end
-
-
