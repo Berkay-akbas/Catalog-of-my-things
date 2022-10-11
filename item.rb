@@ -14,11 +14,6 @@ class Item
     @archived = archived
   end
 
-  def move_to_archive
-    self.archived = true if can_be_archived?
-    self.archived = false unless can_be_archived?
-  end
-
   def author=(author)
     @author = author
     author.items << self
@@ -39,10 +34,15 @@ class Item
     @label.items << self
   end
 
-  private
-
   def can_be_archived?
     Date.strptime(@publish_date, '%Y-%m-%d') <
       DateTime.now.prev_year(10)
   end
+
+  def move_to_archive
+    self.archived = true if can_be_archived?
+    self.archived = false unless can_be_archived?
+  end
 end
+
+
