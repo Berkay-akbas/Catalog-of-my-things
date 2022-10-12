@@ -16,6 +16,16 @@ describe Book do
     it 'should be an instance of the Book class' do
       expect(@book).to be_instance_of Book
     end
+    it 'should add genre and author properties as well' do
+      genre = Genre.new('Comedy')
+      author = Author.new('Virag', 'Kormoczy')
+      @book.genre = genre
+      @book.author = author
+      expect(@book.genre).to be_instance_of Genre
+      expect(@book.author).to be_instance_of Author
+      expect(@book.genre.name).to eql('Comedy')
+      expect(@book.author.first_name).to eql('Virag')
+    end
   end
 
   context 'When testing with the can_be_archived method' do
