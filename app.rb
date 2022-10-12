@@ -14,6 +14,7 @@ class App
     @genres = []
     @authors = []
     @games = []
+    @music
   end
 
   include BookMethods
@@ -67,7 +68,7 @@ class App
     end
   end
 
-  
+
 
   def run
     print "Welcome to Catalog of my Things! \n\n"
