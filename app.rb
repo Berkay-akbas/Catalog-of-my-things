@@ -44,6 +44,14 @@ class App
     genres << Genre.new(genre)
   end
 
+  
+  def list_albums
+    puts 'No album uploaded yet!' if @music_albums.empty?
+    @music_albums.each_with_index do |album, ind|
+      p "#{ind + 1} On_spotify: #{album.on_spotify} Publish_date: #{album.publish_date}"
+    end
+  end
+
   def run
     print "Welcome to Catalog of my Things! \n\n"
     loop do
