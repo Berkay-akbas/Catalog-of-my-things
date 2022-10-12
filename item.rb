@@ -45,3 +45,9 @@ class Item
     self.archived = false unless can_be_archived?
   end
 end
+
+item = Item.new('2000-09-08')
+label1 = Label.new('Gift', 'pink')
+label1.add_item(item)
+puts item.label.title
+puts label1.items[0].publish_date
