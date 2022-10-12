@@ -21,6 +21,29 @@ class App
   include GameMethods
   include AuthorMethods
 
+  def add_music_album
+    print 'Declare if on spotify or not [Y/n]: '
+    spotify_choice = gets.chomp
+    on_spotify = true if %w[Y y].include?(spotify_choice)
+    on_spotify = false if %w[N n].include?(spotify_choice)
+    print 'Enter the date the album was published: '
+    publish_date = gets.chomp
+    print 'What is the source of the album: '
+    source = gets.chomp
+    print 'What is the label title the album is under: '
+    label_title = gets.chomp
+    print 'Label studio: '
+    studio = gets.chomp
+    print 'select the genre of the genre of the album: '
+    genre = gets.chomp
+    puts "Music album created successfully\n \n"
+
+    music_albums << MusicAlbum.new(on_spotify, publish_date)
+    sources << Source.new(source)
+    labels << Label.new(label_title, studio)
+    genres << Genre.new(genre)
+  end
+
   def run
     print "Welcome to Catalog of my Things! \n\n"
     loop do
