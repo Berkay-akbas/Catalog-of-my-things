@@ -1,12 +1,10 @@
 require 'json'
 require_relative '../genre'
 require_relative '../item'
-require_relative '../labels/label'
 require_relative '../authors/author'
 require_relative '../authors/author_methods'
-require_relative '../books/book_methods'
+require_relative '../books/book_label_methods'
 require_relative '../games/game_methods'
-require_relative '../labels/label_methods'
 
 module GameMethods
   def input(message)

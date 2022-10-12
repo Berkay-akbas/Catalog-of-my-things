@@ -1,4 +1,4 @@
-require_relative '../labels/label'
+require_relative '../books/label'
 require_relative '../books/book'
 
 describe Label do
@@ -14,7 +14,7 @@ describe Label do
       expect(@label.title).to eql('GIFT')
       expect(@label.color).to eql('pink')
       expect(@label.color).to be_kind_of String
-      expect(@label.id).to be_kind_of Integer
+      expect(@label.id).to be_kind_of String
     end
   end
 

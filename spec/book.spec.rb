@@ -11,7 +11,7 @@ describe Book do
       expect(@book.cover_state).to eql('bad')
       expect(@book.publish_date).to eql('2022-02-07')
       expect(@book.publish_date).to be_kind_of String
-      expect(@book.id).to be_kind_of Integer
+      expect(@book.id).to be_kind_of String
     end
     it 'should be an instance of the Book class' do
       expect(@book).to be_instance_of Book

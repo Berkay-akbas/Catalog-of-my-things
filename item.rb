@@ -1,6 +1,3 @@
-# require_relative 'genre'
-# require_relative 'author'
-require_relative 'labels/label'
 require 'date'
 require 'securerandom'
 
@@ -45,5 +42,3 @@ class Item
     self.archived = false unless can_be_archived?
   end
 end
-
-
