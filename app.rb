@@ -60,6 +60,15 @@ class App
     end
   end
 
+  def list_sources
+    puts 'No sources yet here!' if @sources.empty?
+    @sources.each_with_index do |source, ind|
+      p "#{ind + 1} Id: #{source.id} name: #{source.name}"
+    end
+  end
+
+  
+
   def run
     print "Welcome to Catalog of my Things! \n\n"
     loop do
