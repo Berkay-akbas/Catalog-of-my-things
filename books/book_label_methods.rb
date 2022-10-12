@@ -1,13 +1,14 @@
 require 'json'
+require_relative 'label'
 
-module BookMethods
+module BookAndLabelMethods
   def create_book
     title = set_title
     publisher = set_publisher
     cover_state = set_cover_state
     publish_date = set_publish_date
     label = add_label
-    puts "#{title.capitalize!} by #{publisher.capitalize!} with a #{cover_state} cover state was successfully created!"
+    puts "#{title} by #{publisher} with a #{cover_state} cover state was successfully created!"
     puts '-' * 60
     @books = load_all_books if @books.length.zero?
     book1 = Book.new(title, publisher, cover_state, publish_date)
@@ -33,6 +34,29 @@ module BookMethods
     end
     File.write('labels.json', labels_list.to_json)
     label1
+  end
+
+  def list_all_labels
+    puts "Labels list:\n\n"
+    @labels = load_all_labels
+    if @labels.length.zero?
+      puts "List is empty, please add some labels...\n\n"
+    else
+      @labels.each_with_index do |label, index|
+        print "#{index}) Title: #{label.title}, Color: #{label.color} \n\n"
+      end
+    end
+  end
+
+  def load_all_labels
+    file = 'labels.json'
+    labels = []
+    if File.exist?(file) && File.read(file) != ''
+      labels = JSON.parse(File.read(file)).map do |label|
+        Label.new(label['title'], label['color'])
+      end
+    end
+    labels
   end
 
   def set_title

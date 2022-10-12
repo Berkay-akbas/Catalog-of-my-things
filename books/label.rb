@@ -4,13 +4,9 @@ class Label
 
   def initialize(title, color)
     @id = Random.rand(1..1000)
-    @title = upcase_word(title)
+    @title = title
     @color = color
     @items = []
-  end
-
-  def upcase_word(val)
-    val.upcase!
   end
 
   def add_item(item)

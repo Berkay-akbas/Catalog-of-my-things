@@ -1,6 +1,5 @@
-require_relative './books/book_methods'
+require_relative './books/book_label_methods'
 require_relative './books/book'
-require_relative './labels/label_methods'
 require_relative './games/game_methods'
 require_relative './games/game'
 require_relative './authors/author_methods'
@@ -16,8 +15,7 @@ class App
     @games = []
   end
 
-  include BookMethods
-  include LabelMethods
+  include BookAndLabelMethods
   include GameMethods
   include AuthorMethods
 
