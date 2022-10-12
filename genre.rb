@@ -4,7 +4,7 @@ class Genre
   attr_accessor :id, :name, :items
 
   def initialize(name)
-    @id = Securerandom.hex(5)
+    @id = SecureRandom.hex(5)
     @name = name
     @items = []
   end
