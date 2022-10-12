@@ -52,6 +52,14 @@ class App
     end
   end
 
+  
+  def list_genres
+    puts 'No genres yet here!' if @genres.empty?
+    @genres.each_with_index do |genre, ind|
+      p "#{ind + 1} Id: #{genre.id} name: #{genre.name}"
+    end
+  end
+
   def run
     print "Welcome to Catalog of my Things! \n\n"
     loop do
