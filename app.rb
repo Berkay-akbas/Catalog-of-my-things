@@ -14,7 +14,7 @@ class App
     @genres = []
     @authors = []
     @games = []
-    @music
+    @music_albums = []
   end
 
   include BookMethods
