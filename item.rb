@@ -10,7 +10,7 @@ class Item
   attr_reader :id, :author, :label, :genre
 
   def initialize(publish_date, archived: false)
-    @id = SecureRandom(1..1000)
+    @id = SecureRandom.hex(10)
     @publish_date = publish_date
     @archived = archived
   end
