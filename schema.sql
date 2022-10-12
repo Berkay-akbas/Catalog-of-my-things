@@ -32,4 +32,3 @@ CREATE TABLE musicAlbum(
    publish_date DATE,
    archived boolean       
 );
-
