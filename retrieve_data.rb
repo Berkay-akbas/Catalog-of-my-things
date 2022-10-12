@@ -18,4 +18,6 @@ end
 def retrieve_data(item)
   retrieve_albums(item.music_albums)
   retrieve_genres(item.genres)
+  retrieve_sources(item.sources)
+  retrieve_labels(item.labels)
 end

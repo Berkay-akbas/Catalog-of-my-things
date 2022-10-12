@@ -6,6 +6,13 @@ require_relative './games/game'
 require_relative './authors/author_methods'
 require_relative './authors/author'
 require 'json'
+require './retrieve_data'
+require './data'
+require './label'
+require './source'
+require './genre'
+require './music'
+
 
 class App
   def initialize
