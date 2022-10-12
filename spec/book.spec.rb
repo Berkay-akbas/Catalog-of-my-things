@@ -2,12 +2,12 @@ require_relative '../books/book'
 
 describe Book do
   before :each do
-    @book = Book.new('awesome Books', 'micronaut', 'bad', '2022-02-07')
+    @book = Book.new('awesome books', 'micronaut', 'bad', '2022-02-07')
   end
   context 'When creating a new instance of the Book class' do
     it 'should have the following properties: title, publisher, cover state, publish date, id' do
-      expect(@book.title).to eql('Awesome Books')
-      expect(@book.publisher).to eql('Micronaut')
+      expect(@book.title).to eql('awesome books')
+      expect(@book.publisher).to eql('micronaut')
       expect(@book.cover_state).to eql('bad')
       expect(@book.publish_date).to eql('2022-02-07')
       expect(@book.publish_date).to be_kind_of String
