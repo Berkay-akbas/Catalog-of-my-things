@@ -2,6 +2,7 @@
 # require_relative 'author'
 # require_relative 'label'
 require 'date'
+require 'securerandom'
 
 class Item
   attr_accessor :publish_date, :archived
@@ -10,7 +11,7 @@ class Item
   # attr_reader :id, :publish_date
 
   def initialize(publish_date, archived: false)
-    @id = Random.rand(1..1000)
+    @id = SecureRandom(1..1000)
     @publish_date = publish_date
     @archived = archived
 
