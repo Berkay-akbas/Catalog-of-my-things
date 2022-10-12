@@ -16,5 +16,6 @@ def retrieve_genres(genres)
 end
 
 def retrieve_data(item)
-retrieve_albums(item.music_albums)
-retrieve_genres(item.genres)
+  retrieve_albums(item.music_albums)
+  retrieve_genres(item.genres)
+end
