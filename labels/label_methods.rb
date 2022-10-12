@@ -14,7 +14,7 @@ module LabelMethods
   end
 
   def load_all_labels
-    file = 'labels.json'
+    file = '../storage/labels.json'
     labels = []
     if File.exist?(file) && File.read(file) != ''
       labels = JSON.parse(File.read(file)).map do |label|

@@ -18,7 +18,7 @@ module BookMethods
       books_list << { title: book.title, publisher: book.publisher, cover_state: book.cover_state,
                       publish_date: book.publish_date }
     end
-    File.write('books.json', books_list.to_json)
+    File.write('../storage/books.json', books_list.to_json)
   end
 
   def add_label
@@ -31,7 +31,7 @@ module BookMethods
     @labels.each do |label|
       labels_list << { title: label.title, color: label.color }
     end
-    File.write('labels.json', labels_list.to_json)
+    File.write('../storage/labels.json', labels_list.to_json)
     label1
   end
 
@@ -79,7 +79,7 @@ module BookMethods
   end
 
   def load_all_books
-    file = 'books.json'
+    file = '../storage/books.json'
     books = []
     if File.exist?(file) && File.read(file) != ''
       books = JSON.parse(File.read(file)).map do |book|
