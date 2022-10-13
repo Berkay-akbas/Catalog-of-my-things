@@ -2,28 +2,28 @@ require 'json'
 
 module AuthorMethods
   def add_author(author)
-    File.new('./authors/authors.json', 'w+') unless File.exist?('./authors/authors.json')
+    File.new('./storage/authors.json', 'w+') unless File.exist?('./storage/authors.json')
 
-    if File.empty?('./authors/authors.json')
+    if File.empty?('./storage/authors.json')
       authors = []
     else
-      data = File.read('./authors/authors.json').split
+      data = File.read('./storage/authors.json').split
       authors = JSON.parse(data.join)
     end
 
     authors.push({ id: author.id, first_name: author.first_name, last_name: author.last_name })
 
-    File.write('./authors/authors.json', authors.to_json)
+    File.write('./storage/authors.json', authors.to_json)
   end
 
   def list_authors
-    File.new('./authors/authors.json', 'w+') unless File.exist?('./authors/authors.json')
+    File.new('./storage/authors.json', 'w+') unless File.exist?('./storage/authors.json')
 
-    if File.empty?('./authors/authors.json')
+    if File.empty?('./storage/authors.json')
       puts "\n"
       puts 'The authors list is empty, please add some items with authors...'
     else
-      data = File.read('./authors/authors.json').split
+      data = File.read('./storage/authors.json').split
       authors = JSON.parse(data.join)
       puts 'Author\'s list:'
       authors.each_with_index do |author, index|

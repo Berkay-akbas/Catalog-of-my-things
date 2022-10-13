@@ -25,17 +25,12 @@ class Item
     genre.items << self
   end
 
-  def source=(source)
-    @source = source
-    source.items << self
-  end
-
   def label=(label)
     @label = label
     @label.items << self
   end
 
-  # private
+  private
 
   def can_be_archived?
     Date.strptime(@publish_date, '%Y-%m-%d') < DateTime.now.prev_year(10)
