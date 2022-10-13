@@ -32,8 +32,6 @@ class Item
     @label.items << self
   end
 
-  
-
   def move_to_archive
     self.archived = true if can_be_archived?
     self.archived = false unless can_be_archived?
@@ -45,5 +43,4 @@ class Item
     Date.strptime(@publish_date, '%Y-%m-%d') <
       DateTime.now.prev_year(10)
   end
-
 end

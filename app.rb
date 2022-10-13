@@ -14,7 +14,6 @@ require './source'
 require './genre'
 require './music'
 
-
 class App
   def initialize
     @books = load_all_books
@@ -53,7 +52,6 @@ class App
     genres << Genre.new(genre)
   end
 
-  
   def list_albums
     puts 'No album uploaded yet!' if @music_albums.empty?
     @music_albums.each_with_index do |album, ind|
@@ -61,7 +59,6 @@ class App
     end
   end
 
-  
   def list_genres
     puts 'No genres yet here!' if @genres.empty?
     @genres.each_with_index do |genre, ind|
@@ -75,8 +72,6 @@ class App
       p "#{ind + 1} Id: #{source.id} name: #{source.name}"
     end
   end
-
-
 
   def run
     print "Welcome to Catalog of my Things! \n\n"
