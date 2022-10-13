@@ -6,72 +6,31 @@ require_relative './authors/author_methods'
 require_relative './authors/author'
 require_relative './labels/label'
 require_relative './labels/label_methods'
+require_relative './genres/genre'
+require_relative './genres/genre_methods'
+require_relative './music_albums/music_album'
+require_relative './music_albums/music_album_methods'
+require 'io/console'
+
 require 'json'
 require './retrieve_data'
 require './data'
-require './label'
-require './source'
-require './genre'
-require './music'
 
 class App
   def initialize
     @books = load_all_books
     @labels = load_all_labels
-    @genres = []
+    @genres = load_all_genres
     @games = load_all_games
-    @authors = []
-    @music_albums = []
+    @music_albums = load_all_music_albums
   end
 
   include BookMethods
   include LabelMethods
   include GameMethods
   include AuthorMethods
-
-  def add_music_album
-    print 'Declare if on spotify or not [Y/n]: '
-    spotify_choice = gets.chomp
-    on_spotify = true if %w[Y y].include?(spotify_choice)
-    on_spotify = false if %w[N n].include?(spotify_choice)
-    print 'Enter the date the album was published: '
-    publish_date = gets.chomp
-    print 'What is the source of the album: '
-    source = gets.chomp
-    print 'What is the label title the album is under: '
-    label_title = gets.chomp
-    print 'Label studio: '
-    studio = gets.chomp
-    print 'select the genre of the genre of the album: '
-    genre = gets.chomp
-    puts "Music album created successfully\n \n"
-
-    music_albums << MusicAlbum.new(on_spotify, publish_date)
-    sources << Source.new(source)
-    labels << Label.new(label_title, studio)
-    genres << Genre.new(genre)
-  end
-
-  def list_albums
-    puts 'No album uploaded yet!' if @music_albums.empty?
-    @music_albums.each_with_index do |album, ind|
-      p "#{ind + 1} On_spotify: #{album.on_spotify} Publish_date: #{album.publish_date}"
-    end
-  end
-
-  def list_genres
-    puts 'No genres yet here!' if @genres.empty?
-    @genres.each_with_index do |genre, ind|
-      p "#{ind + 1} Id: #{genre.id} name: #{genre.name}"
-    end
-  end
-
-  def list_sources
-    puts 'No sources yet here!' if @sources.empty?
-    @sources.each_with_index do |source, ind|
-      p "#{ind + 1} Id: #{source.id} name: #{source.name}"
-    end
-  end
+  include GenreMethods
+  include MusicAlbumMethods
 
   def run
     print "Welcome to Catalog of my Things! \n\n"
@@ -95,19 +54,52 @@ class App
   end
 
   def options(option)
+    system('clear')
+
+    case option
+    when 1..6
+      list_all_items(option)
+    when 7..9
+      add_items(option)
+    else
+      invalid_option
+    end
+  end
+
+  def invalid_option()
+    puts 'Invalid option. Please press any key to continue...'
+    $stdin.getch
+    system('clear')
+  end
+
+  def list_all_items(option)
     case option
     when 1
       list_all_books
-    when 5
-      list_all_labels
-    when 7
-      create_book
+    when 2
+      list_all_music_albums
     when 3
       list_all_games
-    when 9
-      add_game
+    when 4
+      list_all_genres
+    when 5
+      list_all_labels
     when 6
       list_authors
+    end
+    print "\nPress Any Key to Continue..."
+    $stdin.getch
+    system('clear')
+  end
+
+  def add_items(option)
+    case option
+    when 7
+      create_book
+    when 8
+      add_music_album
+    when 9
+      add_game
     end
   end
 end

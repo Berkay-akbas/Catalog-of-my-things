@@ -1,5 +1,5 @@
 require 'json'
-require_relative '../genre'
+require_relative '../genres/genre'
 require_relative '../item'
 require_relative '../authors/author'
 require_relative '../authors/author_methods'
@@ -7,6 +7,7 @@ require_relative '../books/book_methods'
 require_relative '../labels/label_methods'
 require_relative '../games/game_methods'
 require_relative '../date_validation'
+require_relative '../genres/genre_methods'
 
 module GameMethods
   def input(message)
@@ -20,17 +21,18 @@ module GameMethods
     multiplayer = input('Is the game multiplayer? [true, false]: ')
     last_played = sets_date('Last played at')
     publish_date = sets_date('Publish date')
-    genre = Genre.new(input('Specify a Genre name: '))
     label = add_label
     author = Author.new(author_first_name, author_last_name)
     game = Game.new(multiplayer, last_played, publish_date)
+    genre = Genre.new(input('Genre name: '))
     game.author = author
     game.genre = genre
-    @genres << genre
     game.label = label
+    @genres << genre
     @games << game
     add_author(author)
-    store
+    store_game
+    store_genre
     puts "The Game has been created successfully \n\n"
   end
 
@@ -46,10 +48,10 @@ module GameMethods
     pub_date
   end
 
-  def store
+  def store_game
     return if @games.empty?
 
-    file = './games/games.json'
+    file = './storage/games.json'
     File.new(file, 'w+') unless File.exist?(file)
 
     data = []
@@ -79,7 +81,7 @@ module GameMethods
 
   def load_all_games
     data = []
-    file = './games/games.json'
+    file = './storage/games.json'
     return data unless File.exist?(file) && File.read(file) != ''
 
     JSON.parse(File.read(file)).each do |game|

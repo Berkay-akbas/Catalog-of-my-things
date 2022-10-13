@@ -27,16 +27,16 @@ module BookMethods
     book1.author = author
     book1.genre = genre
     @books << book1
-    add_author(author)
-    save_book
-    @authors << author
     @genres << genre
+    add_author(author)
+    store_genre
+    save_book
   end
 
   def save_book
     return if @books.empty?
 
-    file = './books/books.json'
+    file = './storage/books.json'
     File.new(file, 'w+') unless File.exist?(file)
 
     data = []
@@ -68,7 +68,7 @@ module BookMethods
 
   def load_all_books
     data = []
-    file = './books/books.json'
+    file = './storage/books.json'
     return data unless File.exist?(file) && File.read(file) != ''
 
     JSON.parse(File.read(file)).each do |book|
