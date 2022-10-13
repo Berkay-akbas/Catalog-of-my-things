@@ -19,8 +19,8 @@ class App
     @books = load_all_books
     @labels = load_all_labels
     @genres = []
+    @games = load_all_games
     @authors = []
-    @games = []
     @music_albums = []
   end
 

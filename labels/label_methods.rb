@@ -27,7 +27,7 @@ module LabelMethods
 
   def list_all_labels
     if @labels.empty?
-      puts "The list is empty, add some books with labels...\n\n"
+      puts "The list is empty, add some items with labels...\n\n"
     else
       puts 'Labels list:'
       @labels.each_with_index do |label, index|
@@ -51,7 +51,7 @@ module LabelMethods
   def set_label_type
     type = ''
     loop do
-      puts 'Give a label for the book: (e.g. Gift, New...)'
+      puts 'Give a label for the item: (e.g. Gift, New...)'
       type = gets.chomp
       type.upcase!
       break if type != ''
@@ -62,7 +62,7 @@ module LabelMethods
   def set_color
     color = ''
     loop do
-      puts 'Choose a color for the book\'s label: (e.g. Pink, Black, Gold...)'
+      puts 'Choose a color for the item\'s label: (e.g. Pink, Black, Gold...)'
       color = gets.chomp
       break if color != ''
     end

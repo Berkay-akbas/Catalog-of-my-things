@@ -20,13 +20,14 @@ module AuthorMethods
     File.new('./authors/authors.json', 'w+') unless File.exist?('./authors/authors.json')
 
     if File.empty?('./authors/authors.json')
-      puts 'No authors yet'
+      puts "\n"
+      puts 'The authors list is empty, please add some items with authors...'
     else
       data = File.read('./authors/authors.json').split
       authors = JSON.parse(data.join)
-      puts 'All Authors:'
+      puts 'Author\'s list:'
       authors.each_with_index do |author, index|
-        puts "#{index + 1}-First name: #{author['first_name']} | Last name: #{author['last_name']}"
+        print "#{index}) First name: #{author['first_name']}, Last name: #{author['last_name']} \n\n"
       end
     end
   end
