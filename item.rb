@@ -1,4 +1,4 @@
-# require_relative 'genre'
+ require_relative 'genre'
 # require_relative 'author'
 require_relative 'labels/label'
 require 'date'
@@ -35,13 +35,18 @@ class Item
     @label.items << self
   end
 
-  def can_be_archived?
-    Date.strptime(@publish_date, '%Y-%m-%d') <
-      DateTime.now.prev_year(10)
-  end
+  
 
   def move_to_archive
     self.archived = true if can_be_archived?
     self.archived = false unless can_be_archived?
   end
+
+  # private
+
+  def can_be_archived?
+    Date.strptime(@publish_date, '%Y-%m-%d') <
+      DateTime.now.prev_year(10)
+  end
+
 end
