@@ -2,7 +2,7 @@ require 'json'
 
 module LabelMethods
   def add_label
-    label_type = setss_label('name for the label')
+    label_type = sets_label('name for the label')
     color = sets_label('color for the label')
     @labels = load_all_labels if @labels.length.zero?
     label1 = Label.new(label_type, color)
@@ -31,7 +31,7 @@ module LabelMethods
     else
       puts "🔖 Labels list:\n\n"
       @labels.each_with_index do |label, index|
-        puts "#{index}) Title: #{label.title}, Color: #{label.color}\n"
+        puts "#{index}) Title: #{label.title}, Color: #{label.color} \n\n"
       end
     end
   end

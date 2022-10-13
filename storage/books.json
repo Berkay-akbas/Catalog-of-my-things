@@ -1,7 +1,7 @@
-[{"title":"Awesome Books","publisher":"Micronaut","cover_state":"good","publish_date":"2022-02-07","author_first_name":"John","author_last_name":"Doe","genre":{
-    "id": "1014d21e9c",
-    "name":"education"
-     },"label":"#<Label:0x00007f2520b9c2a0>"},{"title":"Book123","publisher":"Microverse","cover_state":"bad","publish_date":"2022-09-09","author_first_name":"Michael","author_last_name":"Scott","genre":{
-    "id": "804da3e9a5",
-    "name":"History"
-     },"label":"#<Label:0x00007f2520b97f48>"}]
+[{"title":"Title","publisher":"Book publisher","cover_state":"good","publish_date":"2011-11-11","author_first_name":"Book","author_last_name":"Title","genre":{
+    "id": "e28a7e06c0",
+    "name":"Horrorororo"
+     },"label_title":"name-label","label_color":"color-laberl"},{"title":"Title","publisher":"Book","cover_state":"good","publish_date":"2011-11-11","author_first_name":"Auth","author_last_name":"Name","genre":{
+    "id": "0a49affbe6",
+    "name":"Label"
+     },"label_title":"genre","label_color":"bad"}]

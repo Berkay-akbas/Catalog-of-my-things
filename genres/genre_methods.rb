@@ -45,7 +45,7 @@ module GenreMethods
     else
       puts "🔹Genres list:\n\n"
       @genres.each_with_index do |genre, index|
-        puts "#{index}) Genre name: #{genre.name} \n"
+        puts "#{index}) Genre name: #{genre.name} \n\n"
       end
     end
   end

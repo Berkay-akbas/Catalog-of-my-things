@@ -48,7 +48,7 @@ module BookMethods
                 cover_state: book.cover_state, publish_date: book.publish_date,
                 author_first_name: book.author.first_name,
                 author_last_name: book.author.last_name,
-                genre: book.genre, label: book.label }
+                genre: book.genre, label_title: book.label.title, label_color: book.label.color }
     end
     File.write(file, JSON.generate(data))
   end
@@ -62,7 +62,8 @@ module BookMethods
         print "#{index}) Title: #{book.title} | Publisher: #{book.publisher} | "
         print "Author: #{book.author.first_name} #{book.author.last_name} | "
         print "Genre: #{book.genre.name} | "
-        print "Label and Color: #{book.label.title} #{book.label.color} | "
+        print "Label Title: #{book.label.title} | "
+        print "label Color: #{book.label.color} | "
         print "Publish date: #{book.publish_date} | Cover state: #{book.cover_state} \n"
       end
     end
@@ -79,7 +80,7 @@ module BookMethods
       new_book.author = author
       genre = Genre.new(book['genre']['name'])
       new_book.genre = genre
-      label = Label.new(book['label']['title'], book['label']['color'])
+      label = Label.new(book['label_title'], book['label_color'])
       new_book.label = label
       data << new_book
     end
