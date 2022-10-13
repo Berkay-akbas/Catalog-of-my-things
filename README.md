@@ -51,6 +51,12 @@ rubocop -A
 ruby main.rb
 ```
 
+### Install RSpec
+
+```
+gem install rspec
+```
+
 ### Run tests:
 
 ```

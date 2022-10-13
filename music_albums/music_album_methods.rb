@@ -32,7 +32,8 @@ module MusicAlbumMethods
     add_author(author)
     store_music_album
     store_genre
-    puts "Music album created successfully\n \n"
+    puts "\n\n"
+    puts "✅ Music album created successfully!\n\n"
   end
 
   def store_music_album
@@ -57,7 +58,7 @@ module MusicAlbumMethods
       puts 'There are no music albums in the library'
     else
 
-      puts 'All Music Albums: '
+      puts "🎧 All Music Albums: \n\n"
       @music_albums.each do |music_album|
         print "Author: #{music_album.author.first_name} #{music_album.author.last_name} | "
         print "On Spotify: #{music_album.on_spotify} | "

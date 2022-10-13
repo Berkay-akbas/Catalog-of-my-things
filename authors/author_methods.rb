@@ -25,7 +25,7 @@ module AuthorMethods
     else
       data = File.read('./storage/authors.json').split
       authors = JSON.parse(data.join)
-      puts 'Author\'s list:'
+      puts "👤 Author's list:\n\n"
       authors.each_with_index do |author, index|
         print "#{index}) First name: #{author['first_name']}, Last name: #{author['last_name']} \n\n"
       end

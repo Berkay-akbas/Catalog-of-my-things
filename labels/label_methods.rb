@@ -2,8 +2,8 @@ require 'json'
 
 module LabelMethods
   def add_label
-    label_type = set_label_type
-    color = set_color
+    label_type = sets_label('name for the label')
+    color = sets_label('color for the label')
     @labels = load_all_labels if @labels.length.zero?
     label1 = Label.new(label_type, color)
     @labels << label1
@@ -27,11 +27,11 @@ module LabelMethods
 
   def list_all_labels
     if @labels.empty?
-      puts "The list is empty, add some items with labels...\n\n"
+      puts 'The list is empty, add some items with labels...'
     else
-      puts 'Labels list:'
+      puts "🔖 Labels list:\n\n"
       @labels.each_with_index do |label, index|
-        print "#{index}) Title: #{label.title}, Color: #{label.color} \n\n"
+        puts "#{index}) Title: #{label.title}, Color: #{label.color} \n\n"
       end
     end
   end
@@ -48,24 +48,13 @@ module LabelMethods
     labels
   end
 
-  def set_label_type
-    type = ''
+  def sets_label(val)
+    label = ''
     loop do
-      puts 'Give a label for the item: (e.g. Gift, New...)'
-      type = gets.chomp
-      type.upcase!
-      break if type != ''
+      puts "Choose a #{val} "
+      label = gets.chomp
+      break if label != ''
     end
-    type
-  end
-
-  def set_color
-    color = ''
-    loop do
-      puts 'Choose a color for the item\'s label: (e.g. Pink, Black, Gold...)'
-      color = gets.chomp
-      break if color != ''
-    end
-    color
+    label
   end
 end

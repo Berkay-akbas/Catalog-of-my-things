@@ -1,4 +1,5 @@
-require_relative '../genre'
+require_relative '../genres/genre'
+require_relative '../books/book'
 
 describe Genre do
   before :each do
@@ -11,8 +12,9 @@ describe Genre do
     end
 
     it 'Should add a genre to the items' do
-      @genre.add_items('Fiction Series')
-      expect(@genre.items).not_to be_empty
+      book = Book.new('awesome books', 'micronaut', 'bad', '2022-02-07')
+      @genre.add_items(book)
+      expect(@genre.items[0].publisher).to eql('micronaut')
     end
   end
 end

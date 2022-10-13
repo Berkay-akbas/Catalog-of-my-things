@@ -5,15 +5,17 @@ require_relative '../date_validation'
 
 module BookMethods
   def create_book
-    title = set_title
-    author_first = set_author_first
-    author_last = set_author_last
-    publisher = set_publisher
+    title = sets_names('title of the book')
+    author_first = sets_names('first name of the author')
+    author_last = sets_names('last name of the author')
+    publisher = sets_names('publisher of the book')
     cover_state = set_cover_state
-    genre_type = set_genre
+    genre_type = sets_names('genre of the book (e.g. Comedy, History)')
     publish_date = set_publish_date
     label = add_label
-    puts "#{title} by #{author_first} #{author_last} with a #{label.color} #{label.title} label was successfully added!"
+    puts "\n\n"
+    puts "✅ #{title} by #{author_first} #{author_last} with #{label.color} #{label.title} label was successfully added!"
+    puts "\n\n"
     @books = load_all_books if @books.length.zero?
     author = Author.new(author_first, author_last)
     genre = Genre.new(genre_type)
@@ -46,7 +48,7 @@ module BookMethods
                 cover_state: book.cover_state, publish_date: book.publish_date,
                 author_first_name: book.author.first_name,
                 author_last_name: book.author.last_name,
-                genre: book.genre, label: book.label }
+                genre: book.genre, label_title: book.label.title, label_color: book.label.color }
     end
     File.write(file, JSON.generate(data))
   end
@@ -55,12 +57,13 @@ module BookMethods
     if @books.empty?
       puts "The books list is empty, please add some books...\n\n"
     else
-      puts 'Books list:'
+      puts "📚 Books list:\n\n"
       @books.each_with_index do |book, index|
         print "#{index}) Title: #{book.title} | Publisher: #{book.publisher} | "
         print "Author: #{book.author.first_name} #{book.author.last_name} | "
         print "Genre: #{book.genre.name} | "
-        print "Label and Color: #{book.label.title} #{book.label.color} | "
+        print "Label Title: #{book.label.title} | "
+        print "label Color: #{book.label.color} | "
         print "Publish date: #{book.publish_date} | Cover state: #{book.cover_state} \n"
       end
     end
@@ -77,7 +80,7 @@ module BookMethods
       new_book.author = author
       genre = Genre.new(book['genre']['name'])
       new_book.genre = genre
-      label = Label.new(book['label']['title'], book['label']['color'])
+      label = Label.new(book['label_title'], book['label_color'])
       new_book.label = label
       data << new_book
     end
@@ -85,48 +88,15 @@ module BookMethods
   end
 end
 
-def set_title
-  title = ''
+def sets_names(val)
+  name = ''
   loop do
-    puts 'Enter the title of the book:'
-    title = gets.chomp
-    break if title != ''
+    puts "Enter the #{val}:"
+    name = gets.chomp
+    name.capitalize!
+    break if name != ''
   end
-  title = title.split.each(&:capitalize!)
-  title.join(' ')
-end
-
-def set_author_first
-  author_first = ''
-  loop do
-    puts 'Enter the first name of the author:'
-    author_first = gets.chomp
-    author_first.capitalize!
-    break if author_first != ''
-  end
-  author_first
-end
-
-def set_author_last
-  author_last = ''
-  loop do
-    puts 'Enter the last name of the author:'
-    author_last = gets.chomp
-    author_last.capitalize!
-    break if author_last != ''
-  end
-  author_last
-end
-
-def set_publisher
-  publisher = ''
-  loop do
-    puts 'Enter the publisher of the book:'
-    publisher = gets.chomp
-    publisher.capitalize!
-    break if publisher != ''
-  end
-  publisher
+  name
 end
 
 def set_cover_state
@@ -138,16 +108,6 @@ def set_cover_state
     break if %w[good bad].include?(cover_state)
   end
   cover_state
-end
-
-def set_genre
-  genre = ''
-  loop do
-    puts 'Enter the genre of the book: (e.g. Comedy, History...)'
-    genre = gets.chomp
-    break if genre != ''
-  end
-  genre
 end
 
 def set_publish_date

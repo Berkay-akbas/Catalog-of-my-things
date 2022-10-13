@@ -33,9 +33,9 @@ class App
   include MusicAlbumMethods
 
   def run
-    print "Welcome to Catalog of my Things! \n\n"
+    print "⭐️ Welcome to the Catalog of my Things! ⭐️ \n\n"
     loop do
-      puts "Please choose an option by entering a number: \n
+      puts "🔸Please choose an option by entering a number: \n
       1 - List all books
       2 - List all music albums
       3 - List of games
@@ -45,7 +45,7 @@ class App
       7 - Add a book
       8 - Add a music album
       9 - Add a game
-      10 - Exit"
+     10 - Exit"
       option = gets.chomp.to_i
       break if option == 10
 

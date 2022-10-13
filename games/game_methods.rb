@@ -33,7 +33,8 @@ module GameMethods
     add_author(author)
     store_game
     store_genre
-    puts "The Game has been created successfully \n\n"
+    puts "\n\n"
+    puts "✅ The Game has been created successfully!\n\n"
   end
 
   def sets_date(val)
@@ -69,7 +70,7 @@ module GameMethods
     if @games.empty?
       puts "The games list is empty, please add some games...\n\n"
     else
-      puts 'Games list:'
+      puts "🎮 Games list:\n\n"
       @games.each_with_index do |game, index|
         print "#{index}) Author: #{game.author.first_name} #{game.author.last_name} | "
         print "Multiplayer: #{game.multiplayer} | "

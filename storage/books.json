@@ -1,0 +1,7 @@
+[{"title":"Title","publisher":"Book publisher","cover_state":"good","publish_date":"2011-11-11","author_first_name":"Book","author_last_name":"Title","genre":{
+    "id": "e28a7e06c0",
+    "name":"Horrorororo"
+     },"label_title":"name-label","label_color":"color-laberl"},{"title":"Title","publisher":"Book","cover_state":"good","publish_date":"2011-11-11","author_first_name":"Auth","author_last_name":"Name","genre":{
+    "id": "0a49affbe6",
+    "name":"Label"
+     },"label_title":"genre","label_color":"bad"}]
