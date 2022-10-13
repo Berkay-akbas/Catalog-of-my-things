@@ -19,7 +19,6 @@ module BookMethods
     genre = Genre.new(genre_type)
     book1 = Book.new(title, publisher, cover_state, publish_date)
     add_properties(book1, label, author, genre)
-    add_author(author)
     save_book
   end
 
@@ -44,7 +43,8 @@ module BookMethods
 
     @books.each do |book|
       data << { title: book.title, publisher: book.publisher,
-                cover_state: book.cover_state, publish_date: book.publish_date, author: book.author,
+                cover_state: book.cover_state, publish_date: book.publish_date, author_first_name: book.author.first_name,
+                author_last_name: book.author.last_name,
                 genre: book.genre, label: book.label }
     end
     File.write(file, JSON.generate(data))
@@ -57,6 +57,9 @@ module BookMethods
       puts 'Books list:'
       @books.each_with_index do |book, index|
         print "#{index}) Title: #{book.title} | Publisher: #{book.publisher} | "
+        print "Author: #{book.author.first_name} #{book.author.last_name} | "
+        print "Genre: #{book.genre.name} | "
+        print "Label and Color: #{book.label.title} #{book.label.color} | "
         print "Publish date: #{book.publish_date} | Cover state: #{book.cover_state} \n"
       end
     end
