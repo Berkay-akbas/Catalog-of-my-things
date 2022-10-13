@@ -22,6 +22,7 @@ module BookMethods
     book1.author = author
     book1.genre = genre
     @books << book1
+    add_author(author)
     save_book
   end
 

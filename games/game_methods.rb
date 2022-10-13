@@ -18,21 +18,18 @@ module GameMethods
     author_first_name = input('Author First Name?: ')
     author_last_name = input('Author Last Name?: ')
     multiplayer = input('Is the game multiplayer? [true, false]: ')
-    # last_played = input('Last played at?: ')
-    # publish_date = input('Publish date?: ')
     last_played = sets_date('Last played at')
     publish_date = sets_date('Publish date')
     genre = Genre.new(input('Specify a Genre name: '))
-    label = Label.new(input('What is the label title?: '), input('What is the label color?: '))
+    label = add_label
     author = Author.new(author_first_name, author_last_name)
     game = Game.new(multiplayer, last_played, publish_date)
     game.author = author
     game.genre = genre
     @genres << genre
     game.label = label
-    @labels << label
-    game.move_to_archive
-    store(game)
+    @games << game
+    store
     add_author(author)
     puts "The Game has been created successfully \n\n"
   end
@@ -49,36 +46,46 @@ module GameMethods
     pub_date
   end
 
-  def store(game)
-    File.new('./games/games.json', 'w+') unless File.exist?('./games/games.json')
+  def store
+    return if @games.empty?
 
-    if File.empty?('./games/games.json')
-      games = []
-    else
-      data = File.read('./games/games.json').split
-      games = JSON.parse(data.join)
+    file = './games/games.json'
+    File.new(file, 'w+') unless File.exist?(file)
+
+    data = []
+
+    @games.each do |game|
+      data << { author_first_name: game.author.first_name, author_last_name: game.author.last_name, multiplayer: game.multiplayer, publish_date: game.publish_date, last_played: game.last_played_at, genre: game.genre.name, label_title: game.label.title, label_color: game.label.color }
     end
-
-    games.push({ 'multiplayer' => game.multiplayer, 'last_played_at' => game.last_played_at,
-                 'publish_date' => game.publish_date, 'genre' => game.genre,
-                 'label' => game.label, 'author' => game.author })
-    File.write('./games/games.json', JSON.generate(games))
+    File.write(file, JSON.generate(data))
   end
 
   def list_all_games
-    File.new('./games/games.json', 'w+') unless File.exist?('./games/games.json')
-
-    if File.empty?('./games/games.json')
-      puts 'Games list is empty.'
+    if @games.empty?
+      puts "The games list is empty, please add some games...\n\n"
     else
-      data = File.read('./games/games.json').split
-      games = JSON.parse(data.join)
       puts 'Games list:'
-      games.each_with_index do |game, key|
-        puts "#{key + 1}-[Game] Multiplayer: #{game['multiplayer']} | " \
-             "Last Played: #{game['last_played_at']} | Publish Date: #{game['publish_date']}
-              | Genre: #{game['genre']['name']} | Label: #{game['label']} | Author: #{game['author']}"
+      @games.each_with_index do |game, index|
+        print "#{index}) Author: #{game.author.first_name} #{game.author.last_name}, Multiplayer: #{game.multiplayer}, "
+        print "Publish date: #{game.publish_date}, Last Played At: #{game.last_played_at}, Genre: #{game.genre.name}, Label and Color: #{game.label.title} #{game.label.color}\n"
       end
     end
+  end
+  def load_all_games
+    data = []
+    file = './games/games.json'
+    return data unless File.exist?(file) && File.read(file) != ''
+
+    JSON.parse(File.read(file)).each do |game|
+      author = Author.new(game['author_first_name'], game['author_last_name'])
+      genre = Genre.new(game['genre'])
+      label = Label.new(game['label_title'], game['label_color'])
+      game = Game.new(game['multiplayer'], game['last_played'], game['publish_date'])
+      game.author = author
+      game.genre = genre
+      game.label = label
+      data << game
+    end
+    data
   end
 end

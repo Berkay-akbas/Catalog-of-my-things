@@ -13,8 +13,7 @@ class App
     @books = load_all_books
     @labels = load_all_labels
     @genres = []
-    @authors = []
-    @games = []
+    @games = load_all_games
   end
 
   include BookMethods
@@ -42,6 +41,7 @@ class App
       options(option)
     end
   end
+
 
   def options(option)
     case option
