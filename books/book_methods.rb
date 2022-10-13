@@ -43,7 +43,8 @@ module BookMethods
 
     @books.each do |book|
       data << { title: book.title, publisher: book.publisher,
-                cover_state: book.cover_state, publish_date: book.publish_date, author_first_name: book.author.first_name,
+                cover_state: book.cover_state, publish_date: book.publish_date,
+                author_first_name: book.author.first_name,
                 author_last_name: book.author.last_name,
                 genre: book.genre, label: book.label }
     end
