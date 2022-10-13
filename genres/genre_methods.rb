@@ -43,9 +43,9 @@ module GenreMethods
     if @genres.empty?
       puts 'The genres list is empty, please add some items with genres...'
     else
-      puts 'Genres list:'
+      puts "🔹Genres list:\n\n"
       @genres.each_with_index do |genre, index|
-        print "#{index}) Genre name: #{genre.name} \n\n"
+        puts "#{index}) Genre name: #{genre.name} \n"
       end
     end
   end

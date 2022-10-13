@@ -5,12 +5,12 @@ require_relative '../date_validation'
 
 module BookMethods
   def create_book
-    title = set_title
-    author_first = set_author_first
-    author_last = set_author_last
-    publisher = set_publisher
+    title = sets_names('title of the book')
+    author_first = sets_names('first name of the author')
+    author_last = sets_names('last name of the author')
+    publisher = sets_names('publisher of the book')
     cover_state = set_cover_state
-    genre_type = set_genre
+    genre_type = sets_names('genre of the book (e.g. Comedy, History)')
     publish_date = set_publish_date
     label = add_label
     puts "\n\n"
@@ -87,48 +87,15 @@ module BookMethods
   end
 end
 
-def set_title
-  title = ''
+def sets_names(val)
+  name = ''
   loop do
-    puts 'Enter the title of the book:'
-    title = gets.chomp
-    break if title != ''
+    puts "Enter the #{val}:"
+    name = gets.chomp
+    name.capitalize!
+    break if name != ''
   end
-  title = title.split.each(&:capitalize!)
-  title.join(' ')
-end
-
-def set_author_first
-  author_first = ''
-  loop do
-    puts 'Enter the first name of the author:'
-    author_first = gets.chomp
-    author_first.capitalize!
-    break if author_first != ''
-  end
-  author_first
-end
-
-def set_author_last
-  author_last = ''
-  loop do
-    puts 'Enter the last name of the author:'
-    author_last = gets.chomp
-    author_last.capitalize!
-    break if author_last != ''
-  end
-  author_last
-end
-
-def set_publisher
-  publisher = ''
-  loop do
-    puts 'Enter the publisher of the book:'
-    publisher = gets.chomp
-    publisher.capitalize!
-    break if publisher != ''
-  end
-  publisher
+  name
 end
 
 def set_cover_state
@@ -140,16 +107,6 @@ def set_cover_state
     break if %w[good bad].include?(cover_state)
   end
   cover_state
-end
-
-def set_genre
-  genre = ''
-  loop do
-    puts 'Enter the genre of the book: (e.g. Comedy, History...)'
-    genre = gets.chomp
-    break if genre != ''
-  end
-  genre
 end
 
 def set_publish_date

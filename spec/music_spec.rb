@@ -1,4 +1,4 @@
-require_relative '../music'
+require_relative '../music_albums/music_album'
 
 describe MusicAlbum do
   before :each do

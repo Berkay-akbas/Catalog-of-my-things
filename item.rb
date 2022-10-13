@@ -3,6 +3,7 @@ require 'date'
 
 class Item
   attr_accessor :publish_date, :archived
+  attr_reader :id
 
   def initialize(publish_date, archived: false)
     @id = SecureRandom.hex(5)
@@ -29,8 +30,6 @@ class Item
     @label = label
     @label.items << self
   end
-
-  private
 
   def can_be_archived?
     Date.strptime(@publish_date, '%Y-%m-%d') < DateTime.now.prev_year(10)
