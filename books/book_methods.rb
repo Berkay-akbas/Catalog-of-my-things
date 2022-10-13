@@ -72,7 +72,7 @@ module BookMethods
 
     JSON.parse(File.read(file)).each do |book|
       new_book = Book.new(book['title'], book['publisher'], book['cover_state'], book['publish_date'])
-      author = Author.new(book['author']['first_name'], book['author']['last_name'])
+      author = Author.new(book['author_first_name'], book['author_last_name'])
       new_book.author = author
       genre = Genre.new(book['genre']['name'])
       new_book.genre = genre
