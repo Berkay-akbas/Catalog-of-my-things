@@ -7,6 +7,12 @@ require_relative './authors/author'
 require_relative './labels/label'
 require_relative './labels/label_methods'
 require 'json'
+require './retrieve_data'
+require './data'
+require './label'
+require './source'
+require './genre'
+require './music'
 
 class App
   def initialize
@@ -15,12 +21,57 @@ class App
     @genres = []
     @authors = []
     @games = []
+    @music_albums = []
   end
 
   include BookMethods
   include LabelMethods
   include GameMethods
   include AuthorMethods
+
+  def add_music_album
+    print 'Declare if on spotify or not [Y/n]: '
+    spotify_choice = gets.chomp
+    on_spotify = true if %w[Y y].include?(spotify_choice)
+    on_spotify = false if %w[N n].include?(spotify_choice)
+    print 'Enter the date the album was published: '
+    publish_date = gets.chomp
+    print 'What is the source of the album: '
+    source = gets.chomp
+    print 'What is the label title the album is under: '
+    label_title = gets.chomp
+    print 'Label studio: '
+    studio = gets.chomp
+    print 'select the genre of the genre of the album: '
+    genre = gets.chomp
+    puts "Music album created successfully\n \n"
+
+    music_albums << MusicAlbum.new(on_spotify, publish_date)
+    sources << Source.new(source)
+    labels << Label.new(label_title, studio)
+    genres << Genre.new(genre)
+  end
+
+  def list_albums
+    puts 'No album uploaded yet!' if @music_albums.empty?
+    @music_albums.each_with_index do |album, ind|
+      p "#{ind + 1} On_spotify: #{album.on_spotify} Publish_date: #{album.publish_date}"
+    end
+  end
+
+  def list_genres
+    puts 'No genres yet here!' if @genres.empty?
+    @genres.each_with_index do |genre, ind|
+      p "#{ind + 1} Id: #{genre.id} name: #{genre.name}"
+    end
+  end
+
+  def list_sources
+    puts 'No sources yet here!' if @sources.empty?
+    @sources.each_with_index do |source, ind|
+      p "#{ind + 1} Id: #{source.id} name: #{source.name}"
+    end
+  end
 
   def run
     print "Welcome to Catalog of my Things! \n\n"
