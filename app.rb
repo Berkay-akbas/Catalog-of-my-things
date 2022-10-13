@@ -1,10 +1,11 @@
 require_relative './books/book_methods'
 require_relative './books/book'
-require_relative './labels/label_methods'
 require_relative './games/game_methods'
 require_relative './games/game'
 require_relative './authors/author_methods'
 require_relative './authors/author'
+require_relative './labels/label'
+require_relative './labels/label_methods'
 require 'json'
 require './retrieve_data'
 require './data'
@@ -16,8 +17,8 @@ require './music'
 
 class App
   def initialize
-    @books = []
-    @labels = []
+    @books = load_all_books
+    @labels = load_all_labels
     @genres = []
     @authors = []
     @games = []

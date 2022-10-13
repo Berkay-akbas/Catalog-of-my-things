@@ -1,12 +1,12 @@
 require 'json'
 require_relative '../genre'
 require_relative '../item'
-require_relative '../labels/label'
 require_relative '../authors/author'
 require_relative '../authors/author_methods'
 require_relative '../books/book_methods'
-require_relative '../games/game_methods'
 require_relative '../labels/label_methods'
+require_relative '../games/game_methods'
+require_relative '../date_validation'
 
 module GameMethods
   def input(message)
@@ -18,8 +18,10 @@ module GameMethods
     author_first_name = input('Author First Name?: ')
     author_last_name = input('Author Last Name?: ')
     multiplayer = input('Is the game multiplayer? [true, false]: ')
-    last_played = input('Last played at?: ')
-    publish_date = input('Publish date?: ')
+    # last_played = input('Last played at?: ')
+    # publish_date = input('Publish date?: ')
+    last_played = sets_date('Last played at')
+    publish_date = sets_date('Publish date')
     genre = Genre.new(input('Specify a Genre name: '))
     label = Label.new(input('What is the label title?: '), input('What is the label color?: '))
     author = Author.new(author_first_name, author_last_name)
@@ -32,7 +34,19 @@ module GameMethods
     game.move_to_archive
     store(game)
     add_author(author)
-    puts 'The Game has been created successfully'
+    puts "The Game has been created successfully \n\n"
+  end
+
+  def sets_date(val)
+    pub_date = ''
+    loop do
+      puts "#{val}?: (e.g. 2022-09-10)"
+      date = gets.chomp
+      pub_date = date
+      valid_date = validate_date(date)
+      break if valid_date
+    end
+    pub_date
   end
 
   def store(game)

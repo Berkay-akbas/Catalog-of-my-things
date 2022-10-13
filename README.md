@@ -39,9 +39,23 @@ To get a local copy up and running follow these simple example steps.
 You can clone this repository or simply download the files as a .zip
 If you want to set up a personal repository based on this one, you can as well fork it.
 
-### Run test for linter
+### Run test for linter:
 
-- `rubocop`
+```
+rubocop -A
+```
+
+### Start the app:
+
+```
+ruby main.rb
+```
+
+### Run tests:
+
+```
+rspec spec spec/[FILE NAME FROM THE SPEC FOLDER]
+```
 
 ## 🤝 Contributing
 
@@ -56,6 +70,7 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - Microverse
+
 ## 📝 License
 
 This project is [MIT](./MIT.md) licensed.
