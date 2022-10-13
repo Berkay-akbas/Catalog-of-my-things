@@ -49,12 +49,23 @@ module LabelMethods
   end
 
   def set_label_type
-    puts 'Give a label for the book: (e.g. Gift, New...)'
-    gets.chomp
+    type = ''
+    loop do
+      puts 'Give a label for the book: (e.g. Gift, New...)'
+      type = gets.chomp
+      type.upcase!
+      break if type != ''
+    end
+    type
   end
 
   def set_color
-    puts 'Choose a color for the book\'s label: (e.g. Pink, Black, Gold...)'
-    gets.chomp
+    color = ''
+    loop do
+      puts 'Choose a color for the book\'s label: (e.g. Pink, Black, Gold...)'
+      color = gets.chomp
+      break if color != ''
+    end
+    color
   end
 end

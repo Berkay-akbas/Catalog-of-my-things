@@ -1,1 +1,4 @@
-[{"title":"Awesome Book","publish_date":"2022-09-09","publisher":"Virag","cover_state":"good"}]
+[{"title":"Awesome Book","publisher":"Virag","cover_state":"good","publish_date":"2020-09-09","author":"#<Author:0x00007fe490fc2598>","genre":{
+    "id": "5d1752f8d1",
+    "name":"comedy"
+     },"label":"#<Label:0x00007fe490fc2c00>"}]
