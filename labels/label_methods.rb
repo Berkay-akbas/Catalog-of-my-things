@@ -48,7 +48,7 @@ module LabelMethods
     labels
   end
 
-   def set_label_type
+  def set_label_type
     type = ''
     loop do
       puts 'Give a label for the item: (e.g. Gift, New...)'
