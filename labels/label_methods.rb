@@ -48,13 +48,24 @@ module LabelMethods
     labels
   end
 
-  def set_label_type
-    puts 'Give a label for the item: (e.g. Gift, New...)'
-    gets.chomp
+   def set_label_type
+    type = ''
+    loop do
+      puts 'Give a label for the item: (e.g. Gift, New...)'
+      type = gets.chomp
+      type.upcase!
+      break if type != ''
+    end
+    type
   end
 
   def set_color
-    puts 'Choose a color for the item\'s label: (e.g. Pink, Black, Gold...)'
-    gets.chomp
+    color = ''
+    loop do
+      puts 'Choose a color for the item\'s label: (e.g. Pink, Black, Gold...)'
+      color = gets.chomp
+      break if color != ''
+    end
+    color
   end
 end

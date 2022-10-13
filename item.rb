@@ -1,15 +1,18 @@
-require 'date'
 require 'securerandom'
+require 'date'
 
 class Item
   attr_accessor :publish_date, :archived
 
-  attr_reader :id, :author, :label, :genre
-
   def initialize(publish_date, archived: false)
-    @id = SecureRandom.hex(10)
+    @id = SecureRandom.hex(5)
     @publish_date = publish_date
     @archived = archived
+  end
+
+  def move_to_archive
+    self.archived = true if can_be_archived?
+    self.archived = false unless can_be_archived?
   end
 
   def author=(author)
@@ -32,13 +35,9 @@ class Item
     @label.items << self
   end
 
-  def can_be_archived?
-    Date.strptime(@publish_date, '%Y-%m-%d') <
-      DateTime.now.prev_year(10)
-  end
+  # private
 
-  def move_to_archive
-    self.archived = true if can_be_archived?
-    self.archived = false unless can_be_archived?
+  def can_be_archived?
+    Date.strptime(@publish_date, '%Y-%m-%d') < DateTime.now.prev_year(10)
   end
 end
