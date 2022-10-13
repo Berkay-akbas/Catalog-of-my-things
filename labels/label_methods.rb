@@ -14,7 +14,7 @@ module LabelMethods
   def save_label
     return if @labels.empty?
 
-    file = './labels/labels.json'
+    file = './storage/labels.json'
     File.new(file, 'w+') unless File.exist?(file)
 
     data = []
@@ -37,7 +37,7 @@ module LabelMethods
   end
 
   def load_all_labels
-    file = './labels/labels.json'
+    file = './storage/labels.json'
     labels = []
     return labels unless File.exist?(file) && File.read(file) != ''
 

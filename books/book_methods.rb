@@ -13,7 +13,9 @@ module BookMethods
     genre_type = set_genre
     publish_date = set_publish_date
     label = add_label
-    puts "#{title} by #{author_first} #{author_last} with a #{label.color} #{label.title} label was successfully added!"
+    puts "\n\n"
+    puts "✅ #{title} by #{author_first} #{author_last} with #{label.color} #{label.title} label was successfully added!"
+    puts "\n\n"
     @books = load_all_books if @books.length.zero?
     author = Author.new(author_first, author_last)
     genre = Genre.new(genre_type)
@@ -27,16 +29,16 @@ module BookMethods
     book1.author = author
     book1.genre = genre
     @books << book1
-    add_author(author)
-    save_book
-    @authors << author
     @genres << genre
+    add_author(author)
+    store_genre
+    save_book
   end
 
   def save_book
     return if @books.empty?
 
-    file = './books/books.json'
+    file = './storage/books.json'
     File.new(file, 'w+') unless File.exist?(file)
 
     data = []
@@ -55,7 +57,7 @@ module BookMethods
     if @books.empty?
       puts "The books list is empty, please add some books...\n\n"
     else
-      puts 'Books list:'
+      puts "📚 Books list:\n\n"
       @books.each_with_index do |book, index|
         print "#{index}) Title: #{book.title} | Publisher: #{book.publisher} | "
         print "Author: #{book.author.first_name} #{book.author.last_name} | "
@@ -68,7 +70,7 @@ module BookMethods
 
   def load_all_books
     data = []
-    file = './books/books.json'
+    file = './storage/books.json'
     return data unless File.exist?(file) && File.read(file) != ''
 
     JSON.parse(File.read(file)).each do |book|

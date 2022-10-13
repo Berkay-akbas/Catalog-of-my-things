@@ -1,8 +1,0 @@
-[{"title":"Awesome Book","publisher":"Micronaut","cover_state":"bad","publish_date":"2022-09-09","author_first_name":"Jane","author_last_name":"Doe","genre":{
-    "id": "3c416775fd",
-    "name":"history"
-     },"label":{
-      "id": "6dc5ce4301",
-      "title": "OLD",
-      "color": "grey"
-    }}]
