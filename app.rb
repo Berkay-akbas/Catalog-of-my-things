@@ -42,7 +42,6 @@ class App
     end
   end
 
-
   def options(option)
     case option
     when 1

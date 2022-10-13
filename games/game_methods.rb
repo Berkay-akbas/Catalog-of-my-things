@@ -55,7 +55,10 @@ module GameMethods
     data = []
 
     @games.each do |game|
-      data << { author_first_name: game.author.first_name, author_last_name: game.author.last_name, multiplayer: game.multiplayer, publish_date: game.publish_date, last_played: game.last_played_at, genre: game.genre.name, label_title: game.label.title, label_color: game.label.color }
+      data << { author_first_name: game.author.first_name, author_last_name: game.author.last_name,
+                multiplayer: game.multiplayer, publish_date: game.publish_date, last_played:
+                game.last_played_at, genre: game.genre.name,
+                label_title: game.label.title, label_color: game.label.color }
     end
     File.write(file, JSON.generate(data))
   end
@@ -66,11 +69,14 @@ module GameMethods
     else
       puts 'Games list:'
       @games.each_with_index do |game, index|
-        print "#{index}) Author: #{game.author.first_name} #{game.author.last_name}, Multiplayer: #{game.multiplayer}, "
-        print "Publish date: #{game.publish_date}, Last Played At: #{game.last_played_at}, Genre: #{game.genre.name}, Label and Color: #{game.label.title} #{game.label.color}\n"
+        print "#{index}) Author: #{game.author.first_name} #{game.author.last_name},
+         Multiplayer: #{game.multiplayer}, "
+        print "Publish date: #{game.publish_date}, Last Played At: #{game.last_played_at},
+        Genre: #{game.genre.name}, Label and Color: #{game.label.title} #{game.label.color}\n"
       end
     end
   end
+
   def load_all_games
     data = []
     file = './games/games.json'
