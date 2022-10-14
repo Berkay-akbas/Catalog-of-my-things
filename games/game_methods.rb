@@ -8,6 +8,7 @@ require_relative '../labels/label_methods'
 require_relative '../games/game_methods'
 require_relative '../date_validation'
 require_relative '../genres/genre_methods'
+require 'time'
 
 module GameMethods
   def input(message)
@@ -19,22 +20,37 @@ module GameMethods
     author_first_name = input('Author First Name?: ')
     author_last_name = input('Author Last Name?: ')
     multiplayer = input('Is the game multiplayer? [true, false]: ')
-    last_played = sets_date('Last played at')
     publish_date = sets_date('Publish date')
+    last_played = sets_date('Last played at')
+
+    if Time.parse(last_played) < Time.parse(publish_date)
+      puts 'Last played date cannot be before publish date'
+      last_played = sets_date('Last played at')
+      return
+    end
+
     label = add_label
     author = Author.new(author_first_name, author_last_name)
     game = Game.new(multiplayer, last_played, publish_date)
     genre = Genre.new(input('Genre name: '))
+    set_attributes(game, author, genre, label)
+    add_author(author)
+    store_game
+    store_genre
+    create_message
+  end
+
+  def create_message
+    puts "\n\n"
+    puts "✅ The Game has been created successfully!\n\n"
+  end
+
+  def set_attributes(game, author, genre, label)
     game.author = author
     game.genre = genre
     game.label = label
     @genres << genre
     @games << game
-    add_author(author)
-    store_game
-    store_genre
-    puts "\n\n"
-    puts "✅ The Game has been created successfully!\n\n"
   end
 
   def sets_date(val)
